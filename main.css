@@ -1,0 +1,18 @@
+.slider-container {
+  width: 80%;
+  margin-top: 38px;
+  margin-bottom: 4px;
+}
+
+div.animated {
+  animation: animation1 0.2s;
+}
+
+@keyframes animation1 {
+  0% {
+    background-color: orange;
+  }
+  100% {
+    background-color: black;
+  }
+}

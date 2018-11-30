@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flexbox doodle</title>
+  <style>
+    :root {
+      --box1: 1;
+      --box2: 1;
+      --box3: 1;
+      --box4: 1;
+      --box5: 1;
+    }
+
+    * {
+      padding: 0px;
+      margin: 0 auto;
+      transition: all 0.5s;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(73, 59, 59);
+    }
+
+    .button-contain {
+      text-align: center;
+    }
+
+    button {
+      width: 100px;
+      height: 50px;
+      margin-top: 40px;
+      background-color: rgb(61, 50, 50);
+      color: coral;
+      border: 1px solid coral;
+    }
+
+    button:active {
+      background-color: coral;
+      color: rgb(73, 59, 59);
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    #div {
+      margin-top: 40px;
+      width: 80%;
+      height: 100px;
+      /*box-shadow: 0px 0px 40px black;*/
+      user-select: none;
+    }
+
+    .container {
+      display: flex;
+      width: 80%;
+      height: 300px;
+      margin-top: 5px;
+    }
+
+    /* div[class*="box"] {
+      box-shadow: 0px 0px 40px black;
+    } */
+
+    .box-1 {
+      /* order: var(--box1); */
+      background-color: blueviolet;
+      flex: var(--box1);
+    }
+
+    .box-2 {
+      /* order: var(--box2); */
+      background-color: coral;
+      flex: var(--box2);
+    }
+
+    .box-3 {
+      /* order: var(--box3); */
+      background-color: darkolivegreen;
+      flex: var(--box3);
+    }
+
+    .box-4 {
+      /* order: var(--box4); */
+      background-color: lightsalmon;
+      flex: var(--box4);
+    }
+
+    .box-5 {
+      /* order: var(--box5); */
+      background-color: yellow;
+      flex: var(--box5);
+    }
+
+    .code-container {
+      width: 80%;
+      text-align: left;
+      margin-top: 8px;
+      margin-bottom: 100px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.2em;
+      color: orange;
+      letter-spacing: 1px;
+      line-height: 22px;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 50px;
+    }
+
+    span[id*="flex-value"] {
+      display: inline-block;
+      color: white;
+      padding: 0px 0px;
+    }
+
+    #ruler {
+      height: 20px;
+      /* border-top: 1px solid #777; */
+      border-bottom: 1px solid rgb(104, 104, 96);
+      border-right: 1px solid rgb(104, 104, 96);
+      width: 80%;
+      margin-top: 9px;
+      display: flex;
+    }
+
+    #ruler-item {
+      border-left: 1px solid rgb(104, 104, 96);
+      flex: 1;
+    }
+
+    #scale {
+      display: none;
+      text-align: center;
+      font-size: 1.6em;
+      color: orange;
+      margin-top: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 80%;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" type="text/css" href="slider.css">
+</head>
+
+<body>
+
+  <div class="button-contain">
+    <button onclick="minFunktion()">Click here</button>
+  </div>
+
+  <div class="slider-container">
+
+    <div class="slidecontainer">
+      <input name="Flex1" type="range" min="1" max="10" value="1" class="slider ett" id="myRange1">
+    </div>
+
+    <div class="slidecontainer">
+      <input name="Flex2" type="range" min="1" max="10" value="1" class="slider tva" id="myRange2">
+    </div>
+
+    <div class="slidecontainer">
+      <input name="Flex3" type="range" min="1" max="10" value="1" class="slider tre" id="myRange3">
+    </div>
+
+    <div class="slidecontainer">
+      <input name="Flex4" type="range" min="1" max="10" value="1" class="slider fyra" id="myRange4">
+    </div>
+
+    <div class="slidecontainer">
+      <input name="Flex5" type="range" min="1" max="10" value="1" class="slider fem" id="myRange5">
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="box-1"></div>
+    <div class="box-2"></div>
+    <div class="box-3"></div>
+    <div class="box-4"></div>
+    <div class="box-5"></div>
+  </div>
+
+  <div id="ruler">
+    <div id="ruler-item"></div>
+    <div id="ruler-item"></div>
+    <div id="ruler-item"></div>
+    <div id="ruler-item"></div>
+    <div id="ruler-item"></div>
+  </div>
+
+  <div id="scale">1 : 5</div>
+<!-- 
+  <div class="code-container">
+    <p>.container {<br />&nbsp; display: <span id="flex-value">flex</span>;<br />}</p><br />
+    <p>.box-1 {<br />&nbsp; flex: <span id="flex-value-1">1</span>;<br />}</p><br />
+    <p>.box-2 {<br />&nbsp; flex: <span id="flex-value-2">1</span>;<br />}</p><br />
+    <p>.box-3 {<br />&nbsp; flex: <span id="flex-value-3">1</span>;<br />}</p><br />
+    <p>.box-4 {<br />&nbsp; flex: <span id="flex-value-4">1</span>;<br />}</p><br />
+    <p>.box-5 {<br />&nbsp; flex: <span id="flex-value-5">1</span>;<br />}</p>
+  </div> -->
+
+  <script>
+
+    let div = document.getElementById("div");
+    let ruler = document.getElementById("ruler");
+    let scale = document.getElementById("scale");
+    let root = document.documentElement;
+
+    /*let codeValue1 = document.getElementById("flex-value-1");
+    let codeValue2 = document.getElementById("flex-value-2");
+    let codeValue3 = document.getElementById("flex-value-3");
+    let codeValue4 = document.getElementById("flex-value-4");
+    let codeValue5 = document.getElementById("flex-value-5");*/
+
+    function minFunktion() {
+
+      ruler.innerHTML = "";
+
+      let nr1 = Math.floor((Math.random() * 10) + 1);
+      let nr2 = Math.floor((Math.random() * 10) + 1);
+      let nr3 = Math.floor((Math.random() * 10) + 1);
+      let nr4 = Math.floor((Math.random() * 10) + 1);
+      let nr5 = Math.floor((Math.random() * 10) + 1);
+
+      root.style.setProperty('--box1', nr1);
+      root.style.setProperty('--box2', nr2);
+      root.style.setProperty('--box3', nr3);
+      root.style.setProperty('--box4', nr4);
+      root.style.setProperty('--box5', nr5);
+
+      slider1.value = nr1;
+      slider2.value = nr2;
+      slider3.value = nr3;
+      slider4.value = nr4;
+      slider5.value = nr5;
+
+      /*codeValue1.innerHTML = nr1;
+      codeValue2.innerHTML = nr2;
+      codeValue3.innerHTML = nr3;
+      codeValue4.innerHTML = nr4;
+      codeValue5.innerHTML = nr5;*/
+
+      let summa = nr1 + nr2 + nr3 + nr4 + nr5;
+      scale.innerHTML = "1 : " + summa;
+      for (let i = 0; i < summa; i++) {
+        ruler.innerHTML += "<div id='ruler-item'></div>";
+      }
+    }
+
+    function updateFromSliders() {
+      let r1 = parseInt(document.getElementById("myRange1").value);
+      let r2 = parseInt(document.getElementById("myRange2").value);
+      let r3 = parseInt(document.getElementById("myRange3").value);
+      let r4 = parseInt(document.getElementById("myRange4").value);
+      let r5 = parseInt(document.getElementById("myRange5").value);
+      let summa = r1 + r2 + r3 + r4 + r5;
+      ruler.innerHTML = "";
+      scale.innerHTML = "1 : " + summa;
+      for (let i = 0; i < summa; i++) {
+        ruler.innerHTML += "<div id='ruler-item'></div>";
+      }
+    }
+
+  </script>
+  <script src="slider.js"></script>
+</body>
+
+</html>
